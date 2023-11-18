@@ -32,14 +32,14 @@ print()
 
 # Print mutations on the first debit card
 iban = cards[0].id.iban
-last_mutation_key = None
+page_token = None
 print("%s:" %iban)
 print("---")
 for i in range(3):
-	list = mutations.search(iban, last_mutation_key=last_mutation_key)
+	list = mutations.search(iban, page_token=page_token)
 	for info in list.mutations:
 		print("Amount: %.2f" %info.mutation.amount)
 		print("Name:", info.mutation.counter_account_name)
 		print("Date:", info.mutation.transaction_date.strftime("%Y-%m-%d"))
 		print("---")
-	last_mutation_key = list.last_mutation_key
+	page_token = list.page_token
