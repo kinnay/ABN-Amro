@@ -2,7 +2,7 @@
 
 This is an unofficial Python package that allows you to automatically obtain information about your bank accounts.
 
-This can be useful if you want to automate your finances without relying on 3rd party 
+This can be useful if you want to automatically track your finances without relying on 3rd party applications.
 
 ### Installation
 This package requires Python 3.10 or later and can be installed with pip: `pip install abnamro`. This package uses [semantic versioning](https://semver.org/).
