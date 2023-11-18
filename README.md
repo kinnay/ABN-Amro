@@ -2,8 +2,10 @@
 
 This is an unofficial Python package that allows you to automatically obtain information about your bank accounts.
 
+This can be useful if you want to automate your finances without relying on 3rd party 
+
 ### Installation
-This package requires Python 3.10 or later and can be installed with pip: `pip install nintendoclients`. This package uses [semantic versioning](https://semver.org/).
+This package requires Python 3.10 or later and can be installed with pip: `pip install abnamro`. This package uses [semantic versioning](https://semver.org/).
 
 ### Documentation
 * [The ABN AMRO API](https://github.com/kinnay/ABN-Amro/wiki)
