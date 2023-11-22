@@ -86,8 +86,8 @@ class AuthorizationService:
 	
 	def send_login_response(
 		self, account_number, card_number, challenge_handle, response, access_tool_usage,
-		challenge_device_details, app_id, bound_device_index_number, is_jailbroken,
-		is_bound, imei, telephone_no
+		challenge_device_details, app_id, bound_device_index_number=None, is_jailbroken=None,
+		is_bound=None, imei=None, telephone_no=None
 	):
 		data = {
 			"accountNumber": account_number,
@@ -96,13 +96,13 @@ class AuthorizationService:
 			"response": response,
 			"accessToolUsage": access_tool_usage,
 			"challengeDeviceDetails": challenge_device_details,
-			"appId": app_id,
-			"boundDeviceIndexNumber": bound_device_index_number or 0,
-			"isJailbrokenRooted": is_jailbroken,
-			"isBound": is_bound,
-			"imei": imei,
-			"telephoneNo": telephone_no
+			"appId": app_id
 		}
+		if bound_device_index_number is not None: data["boundDeviceIndexNumber"] = bound_device_index_number
+		if is_jailbroken is not None: data["isJailbroken"] = is_jailbroken
+		if is_bound is not None: data["isBound"] = is_bound
+		if imei is not None: data["imei"] = imei
+		if telephone_no is not None: data["telephoneNo"] = telephone_no
 		return self.client.put("/session/loginresponse", data=data, service_version=4)
 
 	def get_session_handover_challenge(self, access_tool_usage):
