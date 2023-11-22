@@ -12,4 +12,4 @@ This package requires Python 3.10 or later and can be installed with pip: `pip i
 * [The classes and functions in this package](https://abnamro.readthedocs.io)
 
 ### Example Scripts
-* **mutations.py:** Requests your debit card list, and the 60 most recent mutations on the first debit card in the list.
+* **mutations.py:** Requests your list of payment and savings accounts, and the 60 most recent mutations on the first account in the list.
