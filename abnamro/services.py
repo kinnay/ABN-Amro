@@ -2,10 +2,19 @@
 import requests
 
 
-class ServiceError(Exception):
-	def __init__(self, response):
+class ProxyError(Exception):
+	def __init__(self, response, errors):
 		self.response = response
-		self.messages = response.json()["messages"]
+		self.errors = errors
+	
+	def __str__(self):
+		return str(self.errors)
+
+
+class ServiceError(Exception):
+	def __init__(self, response, messages):
+		self.response = response
+		self.messages = messages
 	
 	def __str__(self):
 		return str(self.messages)
@@ -29,8 +38,12 @@ class ServiceClient:
 
 		response = self.session.request(method, self.settings.host + path, headers=headers, **kwargs)
 		if not response.ok:
-			if "application/json" in response.headers.get("Content-Type"):
-				raise ServiceError(response)
+			if "application/json" in response.headers.get("Content-Type", ""):
+				data = response.json()
+				if "messages" in data:
+					raise ServiceError(response, data["messages"])
+				if "errors" in data:
+					raise ProxyError(response, data["errors"])
 			response.raise_for_status()
 		return response.json()
 	
