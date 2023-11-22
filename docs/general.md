@@ -1,7 +1,7 @@
 
 # General API
 
-The `abnamro` package provides both a [low-level API](/lowlevel), which lets you call server methods directly, and a [high-level API](/highlevel), which provides a basic abstraction and validation.
+The `abnamro` package provides both a [low-level API](../lowlevel), which lets you call server methods directly, and a [high-level API](../highlevel), which provides a basic abstraction and validation.
 
 In general, you want to use the high-level API.
 
