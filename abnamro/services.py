@@ -63,6 +63,27 @@ class ServiceClient:
 		self.card_number = card_number
 
 
+class AccountsService:
+	def __init__(self, client):
+		self.client = client
+	
+	def get_contracts(
+		self, product_groups=None, product_building_blocks=None, include_actions=None,
+		include_action_names=None, exclude_blocked=None, exclude_status=None,
+		bc_number=None, contract_ids=None
+	):
+		params = {}
+		if product_groups is not None: params["productGroups"] = ",".join(product_groups)
+		if product_building_blocks is not None: params["productBuildingBlocks"] = ",".join([str(i) for i in product_building_blocks])
+		if include_actions is not None: params["includeActions"] = include_actions
+		if include_action_names is not None: params["includeActionNames"] = ",".join(include_action_names)
+		if exclude_blocked is not None: params["excludeBlocked"] = "true" if exclude_blocked else "false"
+		if exclude_status is not None: params["excludeStatus"] = ",".join(exclude_status)
+		if bc_number is not None: params["bcNumber"] = bc_number
+		if contract_ids is not None: params["contractIds"] = ",".join(contract_ids)
+		return self.client.get("/contracts", params=params, service_version=2)
+
+
 class AuthorizationService:
 	def __init__(self, client):
 		self.client = client
