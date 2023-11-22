@@ -45,13 +45,18 @@ class ServiceClient:
 				if "errors" in data:
 					raise ProxyError(response, data["errors"])
 			response.raise_for_status()
-		return response.json()
+		
+		if "application/json" in response.headers.get("Content-Type", ""):
+			return response.json()
 	
 	def get(self, path, *, service_version=None, params=None):
 		return self.request("GET", path, service_version=service_version, params=params)
 	
 	def put(self, path, *, service_version=None, data=None):
 		return self.request("PUT", path, service_version=service_version, json=data)
+	
+	def delete(self, path):
+		return self.request("DELETE", path)
 
 	def set_profile(self, account_number, card_number):
 		self.account_number = account_number
@@ -61,6 +66,12 @@ class ServiceClient:
 class AuthorizationService:
 	def __init__(self, client):
 		self.client = client
+	
+	def get_session(self):
+		return self.client.get("/session")
+
+	def delete_session(self):
+		self.client.delete("/session")
 
 	def get_login_challenge(self, account_number, card_number, access_tool_usage, bound_device_index_number=None):
 		params = {
