@@ -1,6 +1,11 @@
 
 ## Changelog
 
+### 2.0.0
+* Rewrite from synchronous code to `asyncio` / `trio`.
+
+*Released on 2023-11-23*
+
 ### 1.1.0
 * Implemented method to obtain list of contracts / bank accounts.
 
