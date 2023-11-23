@@ -19,10 +19,10 @@ Types that are used by the debit cards manager:
 <code>**def _\_init__**(client: [ServiceClient](#serviceclient))</code><br>
 <span class="docs">Creates a new debit cards manager with the given service client.</span>
 
-<code>**def list**() -> list[[DebitCard](#debitcard)]</code><br>
+<code>**async def list**() -> list[[DebitCard](#debitcard)]</code><br>
 <span class="docs">Requests your list of debit cards.</span>
 
-<code>**def get**(account_number: int, card_number: int) -> [DebitCard](#debitcard)</code><br>
+<code>**async def get**(account_number: int, card_number: int) -> [DebitCard](#debitcard)</code><br>
 <span class="docs">Requests a specific debit card.</span>
 
 ## DebitCard

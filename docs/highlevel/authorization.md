@@ -14,7 +14,7 @@ Types that are used by the authorization manager:
 <code>**def _\_init__**(client: [ServiceClient](#serviceclient), settings: [Settings](#settings))</code><br>
 <span class="docs">Creates a new authorization manager with the given service client and settings.</span>
 
-<code>**def login**(account_number: int, card_number: int, password: str) -> [Session](#session)</code>
+<code>**async def login**(account_number: int, card_number: int, password: str) -> [Session](#session)</code>
 <span class="docs">Authorizes the session using the `SOFTTOKEN` access method.</span>
 
 ## Representative

@@ -16,7 +16,7 @@ Types that are used by the debit cards manager:
 <code>**def _\_init__**(client: [ServiceClient](#serviceclient))</code><br>
 <span class="docs">Creates a new mutations manager with the given service client.</span>
 
-<code>**def search**(iban: str, *, page_size: int = 20, page_token: str = None, text: str = None, amount_from: float = None, amount_to: float = None, book_date_from: datetime.datetime = None, book_date_to: datetime.datetime = None) -> [MutationList](#mutationlist)</code><br>
+<code>**async def search**(iban: str, *, page_size: int = 20, page_token: str = None, text: str = None, amount_from: float = None, amount_to: float = None, book_date_from: datetime.datetime = None, book_date_to: datetime.datetime = None) -> [MutationList](#mutationlist)</code><br>
 <span class="docs">Requests mutations for the given IBAN. Up to 20 mutations can be requested at once. In case more mutations are desired, the page token from the [MutationList](#mutationlist) can be used to obtain the next page. Various filters can be specified. Only the mutations of the past 18 months can be obtained.</span>
 
 ## Action

@@ -18,7 +18,7 @@ Types that are used by the accounts manager:
 <code>**def _\_init__**(client: [ServiceClient](#serviceclient))</code><br>
 <span class="docs">Creates a new accounts manager with the given service client.</span>
 
-<code>**def list**(*,
+<code>**async def list**(*,
 	product_groups: list[str] = None,
 	product_building_blocks: list[int],
 	include_actions: str = None,
