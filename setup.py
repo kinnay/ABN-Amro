@@ -14,7 +14,7 @@ setuptools.setup(
 	url = "https://github.com/kinnay/ABN-Amro",
 	packages = ["abnamro"],
 	install_requires = [
-		"pycryptodome",
-		"requests"
+		"httpx ~= 0.25",
+		"pycryptodome"
 	]
 )

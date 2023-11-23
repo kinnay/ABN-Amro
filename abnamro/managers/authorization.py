@@ -24,12 +24,14 @@ class AuthorizationManager:
 
 		self.service = services.AuthorizationService(client)
 	
-	def login(self, account_number, card_number, password):
-		challenge_result = self.service.get_login_challenge(account_number, card_number, constants.ACCESS_SOFTTOKEN)["loginChallenge"]
-		challenge_response = challenge.solve_login_challenge(bytes.fromhex(challenge_result["challenge"]), challenge_result["userId"], password)
-		login_result = self.service.send_login_response(
-			account_number, card_number, challenge_result["challengeHandle"], challenge_response,
-			constants.ACCESS_SOFTTOKEN, challenge_result["challengeDeviceDetails"], self.settings.app_id,
+	async def login(self, account_number, card_number, password):
+		challenge_result = await self.service.get_login_challenge(account_number, card_number, constants.ACCESS_SOFTTOKEN)
+		login_challenge = challenge_result["loginChallenge"]
+
+		challenge_response = challenge.solve_login_challenge(bytes.fromhex(login_challenge["challenge"]), login_challenge["userId"], password)
+		login_result = await self.service.send_login_response(
+			account_number, card_number, login_challenge["challengeHandle"], challenge_response,
+			constants.ACCESS_SOFTTOKEN, login_challenge["challengeDeviceDetails"], self.settings.app_id,
 			0, False, False, "", ""
 		)
 		self.client.set_profile(account_number, card_number)

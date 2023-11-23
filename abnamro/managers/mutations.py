@@ -48,7 +48,7 @@ class MutationsManager:
 	def __init__(self, client):
 		self.service = services.MutationsService(client)
 	
-	def search(
+	async def search(
 		self, iban, *, page_size=20, page_token=None, text=None, amount_from=None,
 		amount_to=None, book_date_from=None, book_date_to=None
 	):
@@ -63,7 +63,7 @@ class MutationsManager:
 			cd_indicator_amount_to = "CREDIT" if amount_to > 0 else "DEBIT"
 			amount_to = abs(amount_to)
 
-		response = self.service.get_mutations(
+		response = await self.service.get_mutations(
 			iban, page_size, "BASIC", page_token, None,
 			text, amount_from, amount_to, cd_indicator_amount_from,
 			cd_indicator_amount_to, book_date_from, book_date_to

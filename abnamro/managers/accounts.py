@@ -54,13 +54,13 @@ class AccountsManager:
 	def __init__(self, client):
 		self.service = services.AccountsService(client)
 	
-	def list(self, *, product_groups=None, product_building_blocks=None, include_actions=None,
+	async def list(self, *, product_groups=None, product_building_blocks=None, include_actions=None,
 		include_action_names=None, exclude_blocked=None, exclude_status=None,
 		bc_number=None, contract_ids=None
 	):
-		contracts = self.service.get_contracts(
+		response = await self.service.get_contracts(
 			product_groups, product_building_blocks, include_actions,
 			include_action_names, exclude_blocked, exclude_status,
 			bc_number, contract_ids
-		)["contractList"]
-		return [Contract.create(contract["contract"]) for contract in contracts]
+		)
+		return [Contract.create(contract["contract"]) for contract in response["contractList"]]

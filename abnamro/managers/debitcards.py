@@ -68,10 +68,11 @@ class DebitCardsManager:
 	def __init__(self, client):
 		self.service = services.DebitCardsService(client)
 	
-	def list(self):
-		cards = self.service.get_debit_cards()["debitcardList"]["debitcards"]
+	async def list(self):
+		response = await self.service.get_debit_cards()
+		cards = response["debitcardList"]["debitcards"]
 		return [DebitCard.create(card["debitcard"]) for card in cards]
 	
-	def get(self, account_number, card_number):
-		card = self.service.get_debit_card("%i;%i" %(account_number, card_number))
+	async def get(self, account_number, card_number):
+		card = await self.service.get_debit_card("%i;%i" %(account_number, card_number))
 		return DebitCard.create(card["debitcard"])
