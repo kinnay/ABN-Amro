@@ -1,6 +1,11 @@
 
 ## Changelog
 
+### 2.0.1
+* Fix setup.py. The managers folder was missing when the package was installed with pip.
+
+*Released on 2024-03-28*
+
 ### 2.0.0
 * Rewrite from synchronous code to `asyncio` / `trio`.
 
